@@ -7,6 +7,10 @@ class TelegramBot(GeneralServer):
 	send it to a telegram bot"""
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
+
+		# self.initialize()
+
+	def on_initialize(self):
 		try:
 			self.telegram_bot = telebot.TeleBot(self.get_config('TELEGRAMBOT', 'token'))
 			self.chat_id = self.get_config('TELEGRAMBOT', 'chat_id')
@@ -15,7 +19,7 @@ class TelegramBot(GeneralServer):
 		try:	
 			super().start()
 		except Exception as exc:
-			self.logger.error('Cannot start a server {}'.format(exc))	
+			self.logger.error('Cannot start a server {}'.format(exc))		
 
 	def prepare_msg(self, raw_data):
 		Msg = msg_pb2.Msg()
@@ -25,6 +29,9 @@ class TelegramBot(GeneralServer):
 	def on_fetch(self, msg):
 		Msg = self.prepare_msg(msg)
 		self.telegram_bot.send_message(self.chat_id, '{}\n{}\n{}\n'.format(Msg.title, Msg.text, Msg.tagline))
+
+	# def on_daemonize(self):
+	# 	self.on_initialize()	
 
 def main():
 	TB = TelegramBot()
