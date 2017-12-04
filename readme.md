@@ -19,7 +19,8 @@ It uses a general_server_client and protobuf_asset packages which is implements 
 	pip install py-zabbix 
 	for (Notifier_zabbix_package)
 
-	pip install pyTelegramBotAPI 
+	pip install pyTelegramBotAPI
+	pip install daemonize 
 	for (Telegram_bot_Server)
 
 	create working directory for client and server( if you plans to use a one machine) 
