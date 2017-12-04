@@ -8,8 +8,6 @@ class TelegramBot(GeneralServer):
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 
-		# self.initialize()
-
 	def on_initialize(self):
 		try:
 			self.telegram_bot = telebot.TeleBot(self.get_config('TELEGRAMBOT', 'token'))
@@ -29,9 +27,6 @@ class TelegramBot(GeneralServer):
 	def on_fetch(self, msg):
 		Msg = self.prepare_msg(msg)
 		self.telegram_bot.send_message(self.chat_id, '{}\n{}\n{}\n'.format(Msg.title, Msg.text, Msg.tagline))
-
-	# def on_daemonize(self):
-	# 	self.on_initialize()	
 
 def main():
 	TB = TelegramBot()
