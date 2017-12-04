@@ -133,7 +133,7 @@ It uses a general_server_client and protobuf_asset packages which is implements 
     		]
         }
     ]
-}
+```}```
 
 In the trigger.get section we have a 2 tasks wich numbered as 0 and 1.
 
@@ -147,7 +147,7 @@ You can make a service to Linux by the folowing steps:
 ### 2.1 make a .service file
 
 make a .service file like in the example below:
-
+```
 [Unit]
 Description=TelegramBotServer
 
@@ -170,18 +170,19 @@ TimeoutSec=300
 
 [Install]
 WantedBy=multi-user.target
+```
 
 
 where the start.sh contains:
-
+```
 \#!/bin/bash
-# some conf staff like a conda env activate 
+\#some conf staff like a conda env activate 
 python telegram_bot.py -d # execute the server in the daemon mode
-
+```
 so, stop.sh can be with this stop command:
-
+```
 python telegram_bot.py -s 
-
+```
 restarts. sh - is a combine file with stop and start comands
 
 ### 2.2 Enable service
@@ -190,19 +191,21 @@ for setup and enable the service you should to
 put a .service file into a  /etc/systemd/system which includes a users confs
 
 to enable service you should to run
-
+```
 sudo systemctl enable SERVICE_NAME
-
+```
 ### 2.3 Make a cron task for Notifier
 
-use a crontab -e 
-
+use a 
+```
+crontab -e 
+```
 a following command invoke hourly a notify.sh with some config of virtual envs or something else and run the zabbix_notifier with two params
 
 [task and number of the subtask in the request.json]
-
+```
 00 * * * * /path/to/Notifier_zabbix_package/notify_task.sh trigger.get 0
-
+```
 ### 3. Work
 
 The Server (Telegram_bot_Server) can use a flags -s for stop or -d for demonize. If you use it without flags - it will run like a standars program with blocking a command line
@@ -215,6 +218,7 @@ task and number, where the task is the name of function which will be invoked fr
 
 
 ### Contacts
-
+```
 You can send me a mail. if you have some questions
 E-mail: alexander.ivanov.35@gmail.com
+```
